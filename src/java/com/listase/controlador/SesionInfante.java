@@ -40,7 +40,7 @@ public class SesionInfante implements Serializable {
     
     private List listadoInfantes;
     
-    private DefaultDiagramModel model;
+   private DefaultDiagramModel model;
     
     /**
      * Creates a new instance of SesionInfante
@@ -53,14 +53,14 @@ public class SesionInfante implements Serializable {
     {
         listaInfantes = new ListaSE();        
         //LLenado de la bds
-        listaInfantes.adicionarNodo(new Infante("Carlitos",(short) 1, (byte)2));
-        listaInfantes.adicionarNodo(new Infante("Juanita",(short) 2, (byte)3));
-        listaInfantes.adicionarNodo(new Infante("Martina",(short) 3, (byte)1));
-        listaInfantes.adicionarNodoAlInicio(new Infante("Mariana",(short) 4, (byte)5));
+        listaInfantes.adicionarNodo(new Infante());
+        listaInfantes.adicionarNodo(new Infante());
+        listaInfantes.adicionarNodo(new Infante());
+        listaInfantes.adicionarNodoAlInicio(new Infante());
         ayudante = listaInfantes.getCabeza();
         infante = ayudante.getDato();     
-        //Me llena el objeto List para la tabla
-        listadoInfantes = listaInfantes.obtenerListaInfantes();
+      //Me llena el objeto List para la tabla
+      listadoInfantes = listaInfantes.obtenerListaInfantes();
         
         model = new DefaultDiagramModel();
         //Pude tener n flechas
@@ -105,10 +105,10 @@ public class SesionInfante implements Serializable {
         model.connect(createConnection(giveup.getEndPoints().get(2), fail.getEndPoints().get(0), "Yes"));
     }
      
-    public DiagramModel getModel() {
+     public DiagramModel getModel() {
         return model;
     }
-     
+//     
     private Connection createConnection(EndPoint from, EndPoint to, String label) {
         Connection conn = new Connection(from, to);
         conn.getOverlays().add(new ArrowOverlay(20, 20, 1, 1));
@@ -238,5 +238,5 @@ public class SesionInfante implements Serializable {
             textoVista = "Tabla";
         }
     }
-    
-}
+    }    
+
