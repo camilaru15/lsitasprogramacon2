@@ -51,6 +51,12 @@
                             <p:outputLabel for="spEdad" value="Edad"/>
                             <p:spinner id="spEdad" required="true" min="1" max="7" disabled="#{sesionInfante.deshabilitarFormulario}"
                                        value="#{sesionInfante.infante.edad}"/>
+                            <p:outputLabel value="Genero"/>
+                            <p:inputText id="txtGenero" disabled="#{sesionInfante.deshabilitarFormulario}"
+                                         value="#{sesionInfante.infante.genero}">
+                                <f:selectItem itemLabel="Masculino" itemValue="Masculino"/>
+                                <f:selectItem itemLabel="Femenino" itemValue="Femenino"/>
+                            </p:inputText>  
                             <p:outputLabel value="Al inicio"/>
                             <p:selectOneMenu value="#{sesionInfante.alInicio}" disabled="#{sesionInfante.deshabilitarFormulario}">
                                 <f:selectItem itemLabel="SI" itemValue="1"/>
@@ -63,17 +69,21 @@
                         <p:commandButton value="Nuevo" update="frmInfante" action="#{sesionInfante.habilitarFormulario()}"
                                          disabled="#{!sesionInfante.deshabilitarFormulario}"
                                          />
+                        <p:commandButton value="Invertir" update="frmInfante;:grwlErrores" action="#{sesionInfante.habilitarFormulario()}"
+                                         disabled=""
+                                         />
+                       
                         <p:panelGrid columns="3">
                             <p:commandButton value="Primero" action="#{sesionInfante.irPrimero()}" 
                                               update="frmInfante"/>
                             <p:commandButton value="Siguiente" action="#{sesionInfante.irSiguiente()}"
                                              update="frmInfante"/>       
                             <p:commandButton value="Último" action="#{sesionInfante.irUltimo()}" 
-                                             update="frmInfante"/>                           
-                            
-                            
-                            
+                                             update="frmInfante"/>       
+                            <p:commandButton value="Invertir" action="#{sesionInfante.invertirLista()}" 
+                                             update="frmInfante" />  
                         </p:panelGrid>
+                            
                     </p:panel>
                     
                     <p:panel header="Gráfico" id="pnlVista" style="width: 100%;">
@@ -100,6 +110,12 @@
                                 </f:facet>
                                 <p:outputLabel value="#{inf.edad}"/>
                             </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <p:outputLabel value="Genero"/>
+                                </f:facet>
+                                <p:outputLabel value="#{inf.genero}"/>
+                            </p:column>
                         </p:dataTable>
                         
                         <p:diagram rendered="#{sesionInfante.textoVista=='Tabla'}" value="#{sesionInfante.model}" style="height:600px; width: 800px;" styleClass="ui-widget-content" />
@@ -107,6 +123,8 @@
                     </p:panel>
 
                 </p:panelGrid>
+                <p:outputLabel value="EL promedio de las Edades es: #{sesionInfante.listaInfantes.promediarEdades()}"/>
+                <br></br>
                 <p:outputLabel value="#{sesionInfante.listaInfantes.obtenerListadoInfantes()}"/>
             </p:panel>
         </h:form>

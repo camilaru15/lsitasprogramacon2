@@ -132,4 +132,45 @@ public class ListaSE implements Serializable{
         
     }
     
+    public int contarNiñas(){
+        int contNiñas = 0;
+        Nodo temp = cabeza;
+        if(temp.getSiguiente() != null){
+          while(temp.getDato().getGenero().equals("femenino")){
+              contNiñas += 1;
+          }
+        }
+        return contNiñas;
+    }
+    
+    public float promediarEdades()
+    {
+        int sumaEdades=0;
+        int contador=0;
+        if(cabeza !=null)
+        {
+            Nodo temp= cabeza;            
+            while(temp!=null)
+            {
+               sumaEdades += temp.getDato().getEdad();
+               contador++;
+               temp=temp.getSiguiente();  
+            }
+         return sumaEdades/(float)contador;
+        }
+        return 0;
 }
+    public void invertirlista(){
+        if(cabeza != null){
+            ListaSE listaTemporal = new ListaSE();
+            Nodo temp= cabeza;
+            while(temp != null){
+             listaTemporal.adicionarNodoAlInicio(temp.getDato());
+             temp=temp.getSiguiente();
+                }
+            cabeza =listaTemporal.getCabeza();
+        }
+        
+    }
+}
+

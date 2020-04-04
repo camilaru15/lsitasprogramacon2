@@ -37,6 +37,9 @@ public class SesionInfante implements Serializable {
     private boolean deshabilitarFormulario=true;
     private Nodo ayudante;   
     private String textoVista="Gráfico";
+    private int Promedio;
+
+
     
     private List listadoInfantes;
     
@@ -53,9 +56,9 @@ public class SesionInfante implements Serializable {
     {
         listaInfantes = new ListaSE();        
         //LLenado de la bds
-        listaInfantes.adicionarNodo(new Infante());
-        listaInfantes.adicionarNodo(new Infante());
-        listaInfantes.adicionarNodo(new Infante());
+        listaInfantes.adicionarNodo(new Infante("Carlitos",(short) 1, (byte)2,"Masculino"));
+        listaInfantes.adicionarNodo(new Infante("Juanita",(short) 2, (byte)3, "Femenino"));
+        listaInfantes.adicionarNodo(new Infante("Martina",(short) 3, (byte)1,"Femenino"));
         listaInfantes.adicionarNodoAlInicio(new Infante());
         ayudante = listaInfantes.getCabeza();
         infante = ayudante.getDato();     
@@ -171,8 +174,7 @@ public class SesionInfante implements Serializable {
     public void setInfante(Infante infante) {
         this.infante = infante;
     }
-    
-    
+     
     
     public void guardarInfante()
     {
@@ -227,6 +229,9 @@ public class SesionInfante implements Serializable {
         }
     }
     
+    public void invertirLista(){
+    
+    }
     public void cambiarVistaInfantes()
     {
         if(textoVista.compareTo("Tabla")==0)
